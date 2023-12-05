@@ -135,28 +135,25 @@ public class GamePane extends Pane {
         int x = random.nextInt(WIDTH - 80);
         int y = (int) (random.nextInt(HEIGHT - 10) + nextSpawnPlatformsY);
         spawnPlatform(x, y);
-        if (random.nextDouble() < 1. / 100) {
-            spawnPropeller(x + 20, y - 28);
+        if (random.nextDouble() < 1. / 200) {
+            Propeller propeller = new Propeller();
+            spawnBooster(propeller, x + 20, (int) (y - propeller.getHeight()));
         }
-        if (random.nextDouble() < 1. / 20) {
-            spawnJetpack(x + 20, y - 35);
+        if (random.nextDouble() < 1. / 250) {
+            Jetpack jetpack = new Jetpack();
+            spawnBooster(jetpack, x + 20, (int) (y - jetpack.getHeight()));
+        }
+        if (random.nextDouble() < 1. / 400) {
+            Rocket rocket = new Rocket();
+            spawnBooster(rocket, x, (int) (y - rocket.getHeight()));
         }
     }
 
-    private void spawnPropeller(int x, int y) {
-        Propeller propeller = new Propeller();
-        propeller.setTranslateX(x);
-        propeller.setTranslateY(y);
-        getChildren().add(0, propeller);
-        gameObjects.add(propeller);
-    }
-
-    private void spawnJetpack(int x, int y) {
-        Jetpack jetpack = new Jetpack();
-        jetpack.setTranslateX(x);
-        jetpack.setTranslateY(y);
-        getChildren().add(0, jetpack);
-        gameObjects.add(jetpack);
+    private void spawnBooster(Booster booster, int x, int y) {
+        booster.setTranslateX(x);
+        booster.setTranslateY(y);
+        getChildren().add(0, booster);
+        gameObjects.add(booster);
     }
 
     private void spawnPlatform(int x, int y) {

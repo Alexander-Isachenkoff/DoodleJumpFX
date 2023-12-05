@@ -1,0 +1,8 @@
+<spriteMap filePath="images/rocket.png">
+    <bounds x="0" y="0" width="72" height="168"/>
+    <bounds x="72" y="0" width="72" height="168"/>
+    <bounds x="144" y="0" width="72" height="168"/>
+    <bounds x="0" y="168" width="72" height="168"/>
+    <bounds x="72" y="168" width="72" height="168"/>
+    <bounds x="144" y="168" width="72" height="168"/>
+</spriteMap>
