@@ -67,7 +67,7 @@ public class Booster extends GameObject {
         animation.setAutoReverse(true);
         for (int i = 0; i < images.size(); i++) {
             Image image = images.get(i);
-            KeyFrame keyFrame = new KeyFrame(Duration.millis(50 * i), event -> {
+            KeyFrame keyFrame = new KeyFrame(Duration.millis(33 * i), event -> {
                 getImgRect().setFill(new ImagePattern(image));
                 getImgRect().setWidth(image.getWidth());
                 getImgRect().setHeight(image.getHeight());

@@ -64,11 +64,17 @@ public class GameController {
 
         GameOverController controller = loader.getController();
 
-        //controller.setOnMenu(this::onMenu);
+        controller.setOnMenu(this::onMenu);
         controller.setOnRestart(() -> {
             root.getChildren().remove(load);
             gamePane.restart();
         });
+    }
+
+    @FXML
+    private void onMenu() {
+        gamePane.stop();
+        Main.toMainMenu();
     }
 
 }
