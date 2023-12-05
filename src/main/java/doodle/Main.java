@@ -28,6 +28,10 @@ public class Main extends Application {
         loadRoot("fxml/menu.fxml");
     }
 
+    static void toBestScores() {
+        loadRoot("fxml/best_scores.fxml");
+    }
+
     private static void loadRoot(String fxml) {
         Parent parent;
         try {
