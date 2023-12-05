@@ -1,6 +1,9 @@
 package doodle.model;
 
-import javafx.animation.*;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.util.Duration;
@@ -9,8 +12,8 @@ import java.util.List;
 
 public class Booster extends GameObject {
 
-    protected final Timeline animation = new Timeline();
-    protected final PauseTransition pause = new PauseTransition();
+    private final Timeline animation = new Timeline();
+    private final PauseTransition pause = new PauseTransition();
     private final double playerX;
     private final double playerY;
     private final double speed;

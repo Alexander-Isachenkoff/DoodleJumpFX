@@ -132,9 +132,12 @@ public class GamePane extends Pane {
     }
 
     private void spawnRandomPlatform() {
-        int x = random.nextInt(WIDTH - 80);
+        int x = random.nextInt(WIDTH - 58);
         int y = (int) (random.nextInt(HEIGHT - 10) + nextSpawnPlatformsY);
         spawnPlatform(x, y);
+    }
+
+    private void drawBooster(int x, int y) {
         if (random.nextDouble() < 1. / 200) {
             Propeller propeller = new Propeller();
             spawnBooster(propeller, x + 20, (int) (y - propeller.getHeight()));
@@ -157,7 +160,18 @@ public class GamePane extends Pane {
     }
 
     private void spawnPlatform(int x, int y) {
-        Platform platform = new Platform();
+        Platform platform;
+        if (random.nextDouble() > (1 / (maxHeight / 20000 + 1))) {
+            platform = new MovingPlatform();
+            int toX;
+            do {
+                toX = random.nextInt(WIDTH - 58);
+            } while (Math.abs(x - toX) < 50);
+            ((MovingPlatform) platform).run(toX);
+        } else {
+            platform = new StaticPlatform();
+            drawBooster(x, y);
+        }
         platform.setTranslateX(x);
         platform.setTranslateY(y);
         getChildren().add(0, platform);
