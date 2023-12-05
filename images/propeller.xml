@@ -1,0 +1,5 @@
+<spriteMap filePath="images/propeller.png">
+    <bounds x="32" y="0" width="32" height="32"/>
+    <bounds x="0" y="32" width="32" height="32"/>
+    <bounds x="32" y="32" width="32" height="32"/>
+</spriteMap>

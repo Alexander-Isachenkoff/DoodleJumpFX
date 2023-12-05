@@ -1,0 +1,12 @@
+<spriteMap filePath="images/jetpack.png">
+    <bounds x="0" y="0" width="32" height="64"/>
+    <bounds x="32" y="0" width="32" height="64"/>
+    <bounds x="64" y="0" width="32" height="64"/>
+    <bounds x="96" y="0" width="32" height="64"/>
+    <bounds x="0" y="64" width="32" height="64"/>
+    <bounds x="32" y="64" width="32" height="64"/>
+    <bounds x="64" y="64" width="32" height="64"/>
+    <bounds x="96" y="64" width="32" height="64"/>
+    <bounds x="0" y="128" width="32" height="64"/>
+    <bounds x="32" y="128" width="32" height="64"/>
+</spriteMap>
