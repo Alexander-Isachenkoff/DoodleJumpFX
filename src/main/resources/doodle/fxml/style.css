@@ -9,26 +9,24 @@
 }
 
 .button {
+    -fx-background-color: TRANSPARENT;
     -fx-background-insets: 0;
-    -fx-background-color: white;
-    -fx-background-radius: 10;
-    -fx-border-color: LIGHTGRAY;
-    -fx-border-width: 1 1 0 1;
-    -fx-border-radius: 10;
-    -fx-effect: dropshadow(three-pass-box, #AAA, 0, 0, 0, 5);
+    -fx-padding: 0;
+    -fx-effect: dropshadow(three-pass-box, WHITE, 0, 0, 2, 2);
 }
 
 .button .text {
+    -fx-font-smoothing-type: GRAY;
     -fx-font-size: 18;
     -fx-font-family: "Comic Sans MS";
+    -fx-fill: #555;
 }
 
-.button:hover {
-    -fx-background-color: LIGHTGRAY;
+.button:hover .text {
+    -fx-fill: BLACK;
 }
 
 .button:pressed {
-    -fx-effect: none;
-    -fx-translate-y: 5;
-    -fx-border-width: 1;
+    -fx-effect: dropshadow(three-pass-box, WHITE, 0, 0, 2, 0);
+    -fx-translate-y: 2;
 }

@@ -24,8 +24,10 @@ public class GamePane extends Pane {
     private final Set<KeyCode> keysPressed = new HashSet<>();
     private final Random random = new Random();
     private long lastUpdateTime;
-    private double maxHeight = -500;
+    private double maxHeight;
     private double nextSpawnPlatformsY;
+    private Runnable onGameOver = () -> {
+    };
 
     public GamePane() {
         setPrefWidth(WIDTH);
@@ -57,12 +59,7 @@ public class GamePane extends Pane {
             }
         });
 
-        spawnNewPlatforms();
-        spawnNewPlatforms();
-        spawnPlatform(0, 550);
-
         getChildren().add(doodle);
-        doodle.setTranslateY(500);
 
         doodle.translateYProperty().addListener((observable, oldValue, newValue) -> {
             int height = -newValue.intValue();
@@ -87,8 +84,23 @@ public class GamePane extends Pane {
     }
 
     public void restart() {
+        getChildren().removeAll(gameObjects);
+        gameObjects.clear();
+
+        getChildren().removeAll(platforms);
+        platforms.clear();
+
+        setTranslateY(0);
+        nextSpawnPlatformsY = 0;
+        maxHeight = -500;
+        spawnNewPlatforms();
+        spawnNewPlatforms();
+        spawnPlatform((int) ((WIDTH - doodle.getWidth()) / 2), 20);
         score.set(-1000);
         lastUpdateTime = 0;
+        doodle.setTranslateX((WIDTH - doodle.getWidth()) / 2);
+        doodle.setTranslateY(0);
+        doodle.setVSpeed(0);
         timer.start();
     }
 
@@ -107,6 +119,12 @@ public class GamePane extends Pane {
         }
 
         doodle.move(dtSeconds);
+        if (doodle.getTranslateY() + this.getTranslateY() > HEIGHT) {
+            stop();
+            onGameOver.run();
+            return;
+        }
+
         if (!doodle.isBoosted()) {
             for (Platform platform : platforms) {
                 if (doodle.intersects(platform)) {
@@ -182,4 +200,7 @@ public class GamePane extends Pane {
         return score;
     }
 
+    public void setOnGameOver(Runnable onGameOver) {
+        this.onGameOver = onGameOver;
+    }
 }
