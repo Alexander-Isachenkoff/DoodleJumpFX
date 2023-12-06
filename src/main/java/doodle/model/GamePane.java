@@ -127,24 +127,26 @@ public class GamePane extends Pane {
 
         if (!doodle.isBoosted()) {
             for (Platform platform : platforms) {
-                if (doodle.intersects(platform)) {
-                    if (doodle.getTranslateY() + doodle.getHeight() < platform.getTranslateY() + platform.getHeight()) {
-                        if (doodle.getVSpeed() > 0) {
-                            doodle.jump();
-                            if (platform instanceof SingleUsePlatform) {
-                                ((SingleUsePlatform) platform).disappear();
-                            }
-                        }
+                if (doodle.isJumpFromTop(platform)) {
+                    doodle.jump();
+                    if (platform instanceof SingleUsePlatform) {
+                        ((SingleUsePlatform) platform).disappear();
                     }
                 }
             }
         }
         for (GameObject gameObject : new HashSet<>(gameObjects)) {
-            if (doodle.intersects(gameObject)) {
-                gameObjects.remove(gameObject);
-                getChildren().remove(gameObject);
-                if (gameObject instanceof Booster) {
+            if (gameObject instanceof Booster) {
+                if (doodle.intersects(gameObject)) {
                     doodle.startBooster((Booster) gameObject);
+                    gameObjects.remove(gameObject);
+                    getChildren().remove(gameObject);
+                }
+            }
+            if (gameObject instanceof Jumper) {
+                if (doodle.isJumpFromTop(gameObject)) {
+                    Jumper jumper = (Jumper) gameObject;
+                    doodle.setVSpeed(-jumper.getJumpStartSpeed());
                 }
             }
         }
@@ -156,6 +158,17 @@ public class GamePane extends Pane {
         int x = random.nextInt(WIDTH - 58);
         int y = (int) (random.nextInt(HEIGHT - 10) + nextSpawnPlatformsY);
         spawnPlatform(x, y);
+    }
+
+    private void drawJumper(int x, int y) {
+        if (random.nextDouble() < 1. / 20) {
+            Trampoline trampoline = new Trampoline();
+            spawnJumper(trampoline, x + 10, (int) (y - trampoline.getHeight()));
+        }
+        if (random.nextDouble() < 1. / 20) {
+            Spring spring = new Spring();
+            spawnJumper(spring, x + 20, (int) (y - spring.getHeight()));
+        }
     }
 
     private void drawBooster(int x, int y) {
@@ -180,6 +193,13 @@ public class GamePane extends Pane {
         gameObjects.add(booster);
     }
 
+    private void spawnJumper(Jumper jumper, int x, int y) {
+        jumper.setTranslateX(x);
+        jumper.setTranslateY(y);
+        getChildren().add(0, jumper);
+        gameObjects.add(jumper);
+    }
+
     private void spawnPlatform(int x, int y) {
         double w1 = 1;
         double w2 = maxHeight / 50000;
@@ -191,6 +211,7 @@ public class GamePane extends Pane {
         if (value < w1 / ws) {
             platform = new StaticPlatform();
             drawBooster(x, y);
+            drawJumper(x, y);
         } else if (value < (w1 + w2) / ws) {
             platform = new MovingPlatform();
             int toX;

@@ -1,7 +1,7 @@
 package doodle.model;
 
 import doodle.FileUtils;
-import javafx.animation.*;
+import javafx.animation.PauseTransition;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.util.Duration;
@@ -44,6 +44,15 @@ public class Doodle extends GameObject {
         booster.setOnEnd(() -> getChildren().remove(this.booster));
         getChildren().add(booster);
         booster.start();
+    }
+
+    public boolean isJumpFromTop(GameObject gameObject) {
+        if (this.intersects(gameObject)) {
+            if (this.getTranslateY() + this.getHeight() < gameObject.getTranslateY() + gameObject.getHeight()) {
+                return this.getVSpeed() > 0;
+            }
+        }
+        return false;
     }
 
     public void move(double seconds) {
