@@ -108,3 +108,13 @@
     -fx-font-family: "Comic Sans MS";
 }
 
+.title-label .text {
+    -fx-font-smoothing-type: GRAY;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 36;
+    -fx-font-weight: BOLD;
+    -fx-fill: LIMEGREEN;
+    -fx-stroke: BLACK;
+    -fx-stroke-width: 1.5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 5, 0, 2, 2);
+}

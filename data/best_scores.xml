@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <bestScores>
     <bestScore number="1" name="Alexander" score="2803"/>
+    <bestScore number="2" name="Alex 1" score="2778"/>
     <bestScore number="2" name="Alex 1" score="2246"/>
-    <bestScore number="2" name="Alex" score="2122"/>
-    <bestScore number="3" name="Sang Yong" score="1959"/>
-    <bestScore number="4" name="123" score="1954"/>
-    <bestScore number="5" name="Alexander" score="1553"/>
-    <bestScore number="6" name="564jj546hg" score="814"/>
-    <bestScore number="7" name="unknown" score="351"/>
-    <bestScore number="8" name="unknown" score="218"/>
-    <bestScore number="9" name="szdfxcgvb" score="157"/>
+    <bestScore number="3" name="Alex" score="2122"/>
+    <bestScore number="4" name="Sang Yong" score="1959"/>
+    <bestScore number="5" name="123" score="1954"/>
+    <bestScore number="6" name="Alexander" score="1553"/>
+    <bestScore number="7" name="564jj546hg" score="814"/>
+    <bestScore number="8" name="unknown" score="351"/>
+    <bestScore number="9" name="unknown" score="218"/>
 </bestScores>
