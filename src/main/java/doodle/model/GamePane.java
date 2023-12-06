@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -152,7 +153,28 @@ public class GamePane extends Pane {
             }
         }
 
+        cleanRedundantPlatforms();
+        cleanRedundantGameObjects();
+
         lastUpdateTime = now;
+    }
+
+    private void cleanRedundantPlatforms() {
+        for (Platform platform : new ArrayList<>(platforms)) {
+            if (platform.getTranslateY() + this.getTranslateY() > HEIGHT + doodle.getHeight()) {
+                getChildren().remove(platform);
+                platforms.remove(platform);
+            }
+        }
+    }
+
+    private void cleanRedundantGameObjects() {
+        for (GameObject gameObject : new ArrayList<>(gameObjects)) {
+            if (gameObject.getTranslateY() + this.getTranslateY() > HEIGHT + doodle.getHeight()) {
+                getChildren().remove(gameObject);
+                gameObjects.remove(gameObject);
+            }
+        }
     }
 
     private void spawnRandomPlatform() {
