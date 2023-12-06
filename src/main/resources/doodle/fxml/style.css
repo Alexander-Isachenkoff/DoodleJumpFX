@@ -96,3 +96,15 @@
     -fx-fill: #555;
 }
 
+.text-field {
+    -fx-background-color: WHITE;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5;
+    -fx-border-color: GRAY;
+    -fx-border-width: 0;
+    -fx-text-fill: #555;
+    -fx-highlight-fill: GRAY;
+    -fx-font-size: 18;
+    -fx-font-family: "Comic Sans MS";
+}
+

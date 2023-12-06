@@ -57,32 +57,53 @@ public class GameController {
         int order = (int) bestScores.stream()
                 .filter(bestScore -> bestScore.getScore() >= score)
                 .count();
-        if (order < 10) {
-            bestScores.add(order, new BestScore(order + 1, "unknown", score));
-            new BestScores(bestScores.stream().limit(10).collect(Collectors.toList())).save();
+        int limit = 10;
+        if (order < limit) {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/input.fxml"));
+            Parent load;
+            try {
+                load = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            InputNameController controller = loader.getController();
+
+            controller.setOnSave(name -> {
+                root.getChildren().remove(load);
+                bestScores.add(order, new BestScore(order + 1, name, score));
+                new BestScores(bestScores.stream().limit(limit).collect(Collectors.toList())).save();
+                Main.toBestScores();
+            });
+
+            showPopupPane(load);
+        } else {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/game_over.fxml"));
+            Parent load;
+            try {
+                load = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            GameOverController controller = loader.getController();
+
+            controller.setOnMenu(this::onMenu);
+            controller.setOnRestart(() -> {
+                root.getChildren().remove(load);
+                gamePane.restart();
+            });
+
+            showPopupPane(load);
         }
+    }
 
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/game_over.fxml"));
-        Parent load;
-        try {
-            load = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        root.getChildren().add(load);
-        AnchorPane.setTopAnchor(load, 0.0);
-        AnchorPane.setBottomAnchor(load, 0.0);
-        AnchorPane.setLeftAnchor(load, 0.0);
-        AnchorPane.setRightAnchor(load, 0.0);
-
-        GameOverController controller = loader.getController();
-
-        controller.setOnMenu(this::onMenu);
-        controller.setOnRestart(() -> {
-            root.getChildren().remove(load);
-            gamePane.restart();
-        });
+    private void showPopupPane(Parent parent) {
+        root.getChildren().add(parent);
+        AnchorPane.setTopAnchor(parent, 0.0);
+        AnchorPane.setBottomAnchor(parent, 0.0);
+        AnchorPane.setLeftAnchor(parent, 0.0);
+        AnchorPane.setRightAnchor(parent, 0.0);
     }
 
     @FXML
