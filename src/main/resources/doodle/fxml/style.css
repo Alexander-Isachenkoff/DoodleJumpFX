@@ -16,7 +16,7 @@
     -fx-background-color: TRANSPARENT;
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-effect: dropshadow(three-pass-box, WHITE, 0, 0, 2, 2);
+    -fx-effect: dropshadow(three-pass-box, WHITE, 0, 0, 1, 1);
 }
 
 .button .text {
@@ -31,8 +31,8 @@
 }
 
 .button:pressed {
-    -fx-effect: dropshadow(three-pass-box, WHITE, 0, 0, 2, 0);
-    -fx-translate-y: 2;
+    -fx-effect: none;
+    -fx-translate-y: 1;
 }
 
 .best-scores-table {
