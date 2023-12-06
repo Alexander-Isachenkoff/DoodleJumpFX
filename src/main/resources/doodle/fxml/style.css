@@ -36,8 +36,10 @@
 }
 
 .best-scores-table {
-    -fx-background-color: TRANSPARENT;
+    -fx-background-color: #f8f8f8;
+    -fx-background-radius: 10;
     -fx-background-insets: 0;
+    -fx-padding: 5 15 15 15;
 }
 
 .best-scores-table .table-row-cell {
@@ -59,7 +61,7 @@
 
 .best-scores-table .column-header-background {
     -fx-background-color: TRANSPARENT;
-    -fx-pref-height: 40;
+    -fx-pref-height: 36;
 }
 
 .best-scores-table .column-header-background .filler {
@@ -108,7 +110,7 @@
     -fx-font-family: "Comic Sans MS";
 }
 
-.title-label .text {
+.title-label .text, .best-scores-title-label .text {
     -fx-font-smoothing-type: GRAY;
     -fx-font-family: "Comic Sans MS";
     -fx-font-size: 36;
@@ -117,4 +119,8 @@
     -fx-stroke: BLACK;
     -fx-stroke-width: 1.5;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 5, 0, 2, 2);
+}
+
+.best-scores-title-label .text {
+    -fx-font-size: 32;
 }
