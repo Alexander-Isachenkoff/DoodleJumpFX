@@ -11,8 +11,10 @@ public class GameObject extends Group {
 
     private final Rectangle imgRect = new Rectangle();
     private final Rectangle colliderRect = new Rectangle();
+    private final Image defaultImage;
 
     public GameObject(double width, double height, Image image) {
+        this.defaultImage = image;
         imgRect.setWidth(width);
         imgRect.setHeight(height);
         getChildren().addAll(imgRect, colliderRect);
@@ -55,4 +57,7 @@ public class GameObject extends Group {
         return imgRect.getHeight();
     }
 
+    public Image getDefaultImage() {
+        return defaultImage;
+    }
 }

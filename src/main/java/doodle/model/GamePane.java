@@ -146,6 +146,7 @@ public class GamePane extends Pane {
             if (gameObject instanceof Jumper) {
                 if (doodle.isJumpFromTop(gameObject)) {
                     Jumper jumper = (Jumper) gameObject;
+                    jumper.activate();
                     doodle.setVSpeed(-jumper.getJumpStartSpeed());
                 }
             }
