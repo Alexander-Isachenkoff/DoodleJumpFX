@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="512.0" prefWidth="300.0" spacing="20.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="doodle.BestScoresController">
+   <children>
+      <TableView fx:id="table" styleClass="best-scores-table" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="numberColumn" editable="false" prefWidth="50.0" sortable="false" text="№" />
+          <TableColumn fx:id="nameColumn" editable="false" prefWidth="135.0" sortable="false" text="Name" />
+          <TableColumn fx:id="scoreColumn" editable="false" minWidth="-1.0" prefWidth="60.0" sortable="false" text="Score" />
+        </columns>
+      </TableView>
+      <Button mnemonicParsing="false" onAction="#onMenu" text="Menu" />
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>

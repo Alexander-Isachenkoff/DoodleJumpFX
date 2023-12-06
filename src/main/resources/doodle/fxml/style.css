@@ -1,3 +1,7 @@
+.root {
+    -fx-background-color: WHEAT;
+}
+
 .hud-label .text {
     -fx-font-smoothing-type: GRAY;
 }
@@ -30,3 +34,65 @@
     -fx-effect: dropshadow(three-pass-box, WHITE, 0, 0, 2, 0);
     -fx-translate-y: 2;
 }
+
+.best-scores-table {
+    -fx-background-color: TRANSPARENT;
+    -fx-background-insets: 0;
+}
+
+.best-scores-table .table-row-cell {
+    -fx-background-color: TRANSPARENT;
+    -fx-table-cell-border-color: TRANSPARENT;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: GRAY;
+    -fx-cell-size: 35;
+}
+
+.best-scores-table .table-row-cell:filled {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: GRAY;
+}
+
+.best-scores-table .table-row-cell:empty {
+    -fx-border-width: 0;
+}
+
+.best-scores-table .column-header-background {
+    -fx-background-color: TRANSPARENT;
+    -fx-pref-height: 40;
+}
+
+.best-scores-table .column-header-background .filler {
+    -fx-background-color: TRANSPARENT;
+}
+
+.best-scores-table .table-column {
+    -fx-background-color: TRANSPARENT;
+    -fx-alignment: BOTTOM_LEFT;
+}
+
+.best-scores-table .table-row-cell .text {
+    -fx-font-smoothing-type: GRAY;
+    -fx-font-size: 18;
+    -fx-font-family: "Comic Sans MS";
+    -fx-fill: #555;
+}
+
+.best-scores-table .table-column .text {
+    -fx-font-smoothing-type: GRAY;
+    -fx-font-size: 18;
+    -fx-font-family: "Comic Sans MS";
+    -fx-fill: #333;
+}
+
+.best-scores-table .table-column .label {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.best-scores-table .table-row-cell .text {
+    -fx-font-smoothing-type: GRAY;
+    -fx-font-size: 16;
+    -fx-font-family: "Comic Sans MS";
+    -fx-fill: #555;
+}
+

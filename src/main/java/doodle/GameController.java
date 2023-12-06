@@ -1,5 +1,7 @@
 package doodle;
 
+import doodle.model.BestScore;
+import doodle.model.BestScores;
 import doodle.model.GamePane;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,8 @@ import javafx.scene.layout.*;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameController {
 
@@ -48,6 +52,16 @@ public class GameController {
     }
 
     private void onGameOver() {
+        List<BestScore> bestScores = BestScores.load();
+        int score = gamePane.scoreProperty().get();
+        int order = (int) bestScores.stream()
+                .filter(bestScore -> bestScore.getScore() >= score)
+                .count();
+        if (order < 10) {
+            bestScores.add(order, new BestScore(order + 1, "unknown", score));
+            new BestScores(bestScores.stream().limit(10).collect(Collectors.toList())).save();
+        }
+
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/game_over.fxml"));
         Parent load;
         try {
