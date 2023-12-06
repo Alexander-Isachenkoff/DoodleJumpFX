@@ -131,6 +131,9 @@ public class GamePane extends Pane {
                     if (doodle.getTranslateY() + doodle.getHeight() < platform.getTranslateY() + platform.getHeight()) {
                         if (doodle.getVSpeed() > 0) {
                             doodle.jump();
+                            if (platform instanceof SingleUsePlatform) {
+                                ((SingleUsePlatform) platform).disappear();
+                            }
                         }
                     }
                 }
@@ -178,20 +181,29 @@ public class GamePane extends Pane {
     }
 
     private void spawnPlatform(int x, int y) {
+        double w1 = 1;
+        double w2 = maxHeight / 50000;
+        double w3 = maxHeight / 100000;
+        double ws = w1 + w2 + w3;
         Platform platform;
-        if (random.nextDouble() > (1 / (maxHeight / 20000 + 1))) {
+
+        double value = random.nextDouble();
+        if (value < w1 / ws) {
+            platform = new StaticPlatform();
+            drawBooster(x, y);
+        } else if (value < (w1 + w2) / ws) {
             platform = new MovingPlatform();
             int toX;
             do {
                 toX = random.nextInt(WIDTH - 58);
             } while (Math.abs(x - toX) < 50);
-            ((MovingPlatform) platform).run(toX);
+            ((MovingPlatform) platform).run(x, toX);
         } else {
-            platform = new StaticPlatform();
-            drawBooster(x, y);
+            platform = new SingleUsePlatform();
         }
         platform.setTranslateX(x);
         platform.setTranslateY(y);
+
         getChildren().add(0, platform);
         platforms.add(platform);
     }

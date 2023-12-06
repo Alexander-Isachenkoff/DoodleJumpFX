@@ -21,9 +21,10 @@ public class MovingPlatform extends Platform {
         tt.setInterpolator(Interpolator.LINEAR);
     }
 
-    public void run(double toX) {
+    public void run(double fromX, double toX) {
+        tt.setFromX(fromX);
         tt.setToX(toX);
-        tt.setDuration(Duration.seconds(Math.abs(getTranslateX() - toX) / 100));
+        tt.setDuration(Duration.seconds(Math.abs(fromX - toX) / 100));
         tt.play();
     }
 
